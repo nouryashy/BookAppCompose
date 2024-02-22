@@ -1,4 +1,4 @@
-package com.example.data.data.books.cache.db
+package com.example.data.books.cache.db
 
 import androidx.room.TypeConverter
 import com.example.data.books.cache.entity.CachedBook

@@ -19,5 +19,11 @@ interface BooksDao {
 
     @Query("DELETE FROM books")
     suspend fun clearBooks()
+
+    @Query("SELECT * FROM books")
+    suspend fun getTopBooks(): List<CachedBook>
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertTopBooks(books: List<CachedBook>)
+
 }
 

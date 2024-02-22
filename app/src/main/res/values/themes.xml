@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.BookAppCompose" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.BookAppCompose" parent="android:Theme.Material.Light.NoActionBar" >
+        <item name="android:statusBarColor">#FFFFFF</item>
+    </style>
+
+
+    <style name="Theme.SplashScreen" parent="android:Theme.Material.Light.NoActionBar" >
+        <item name="android:statusBarColor">#FFF5F7F6</item>
+        <item name="android:windowSplashScreenBackground"
+            tools:targetApi="s">#FFF5F7F6</item>
+    </style>
+
+
 </resources>

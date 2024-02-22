@@ -5,5 +5,6 @@ import com.example.data.books.remote.service.BooksServices
 
 
 class BookNetworkDataSource(val apiServices: BooksServices) {
-    suspend fun getBooksFromApi(page: Int): BooksResponseModel = apiServices.getBooks(page)
+    suspend fun getAllBooksFromApi(page: Int): BooksResponseModel = apiServices.getBooks(page)
+    suspend fun getTopBookFromApi(): BooksResponseModel = apiServices.getTopBooks()
 }

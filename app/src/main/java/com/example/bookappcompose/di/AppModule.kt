@@ -2,7 +2,7 @@ package com.example.bookappcompose.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.data.data.books.cache.db.BooksDatabase
+import com.example.data.books.cache.db.BooksDatabase
 import com.example.bookappcompose.utils.Constants
 import com.example.data.books.cache.db.BooksDao
 import com.example.data.books.remote.service.BooksServices

@@ -2,7 +2,6 @@ package com.example.data.books.cache.mapper
 
 import com.example.data.books.cache.entity.CachedBook
 import com.example.data.books.remote.model.BookModel
-import com.example.data.data.books.cache.mapper.CachedFormatMapper
 
 
 object CachedBookMapper {

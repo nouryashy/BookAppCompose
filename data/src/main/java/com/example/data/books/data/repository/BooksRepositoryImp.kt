@@ -14,18 +14,33 @@ class BooksRepositoryImp(
     private val mapperRemote: BookResponseModelMapper,
     private val mapperCached: CachedBookMapper
 ) : BooksRepository {
-    override suspend fun getBooks(page: Int): List<Book> {
+    override suspend fun getAllBooks(page: Int): List<Book> {
         return try {
-            val networkBooks = networkDataSource.getBooksFromApi(page)
+            val networkBooks = networkDataSource.getAllBooksFromApi(page)
             val books = networkBooks.books
-            localDataSource.saveBooksToDb(books.map { mapperCached.mapFromCached(it) })
+            localDataSource.saveAllBooksToDb(books.map { mapperCached.mapFromCached(it) })
             books.map { mapperRemote.mapFromEntity(it) }
         } catch (e: Exception) {
-            val cashed = localDataSource.getBookFromDB()
+            val cashed = localDataSource.getAllBookFromDB()
             val cashedBooks = cashed.map { mapperCached.mapToCached(it) }
             cashedBooks.map { mapperRemote.mapFromEntity(it) }
         }
     }
+
+    override suspend fun getTopBooks(): List<Book> {
+        return try {
+            val networkBooks = networkDataSource.getTopBookFromApi()
+            val books = networkBooks.books
+            localDataSource.saveTopBooksToDb(books.map { mapperCached.mapFromCached(it) })
+            books.map { mapperRemote.mapFromEntity(it) }
+        } catch (e: Exception) {
+            val cashed = localDataSource.getTopBookFromDB()
+            val cashedBooks = cashed.map { mapperCached.mapToCached(it) }
+            cashedBooks.map { mapperRemote.mapFromEntity(it) }
+        }
+    }
+
+
 }
 
 

@@ -1,7 +1,8 @@
-package com.example.data.data.books.cache.mapper
+package com.example.data.books.cache.mapper
 
-import com.example.data.data.books.cache.entity.CachedBook
-import com.example.data.data.books.remote.model.BookModel
+import com.example.data.books.cache.entity.CachedBook
+import com.example.data.books.remote.model.BookModel
+
 
 object CachedFormatMapper {
     fun mapFromCached(type: BookModel.FormatsModel): CachedBook.CachedFormats {

@@ -1,5 +1,7 @@
 package com.example.data.books.remote.model
 import com.google.gson.annotations.SerializedName
+
+
 data class BookModel(
     val id: Int,
     val formats: FormatsModel,
