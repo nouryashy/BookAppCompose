@@ -29,32 +29,44 @@ import com.example.domain.books.model.Book
 fun AuthorItem(
     author: Authors,
 
-) {
+    ) {
     Card(
         Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
             .fillMaxWidth(),
-            elevation = CardDefaults.cardElevation(
+        elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp,
         ),
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-            Column(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally)
-            ) {
-                for (author in author.authors) {
-                    Text(text = author.name, fontSize = 20.sp, color = Color.DarkGray)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = author.birth_year.toString(), fontSize = 14.sp, color = Color.Gray)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = author.death_year.toString(), fontSize = 14.sp, color = Color.Gray)
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .align(Alignment.CenterHorizontally)
+        ) {
+            for (author in author.authors) {
+                Text(text = author.name, fontSize = 20.sp, color = Color.DarkGray)
+                Spacer(modifier = Modifier.height(8.dp))
+                Row() {
+                    val birthDate = author.birth_year.toString()
+                    Text(
+                        text = "birth Date : $birthDate",
+                        fontSize = 16.sp,
+                        color = Color.Gray,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
+                    val deathDate = author.death_year.toString()
+                    Text(
+                        text = "death Date : $deathDate",
+                        fontSize = 14.sp, color = Color.Gray, modifier = Modifier
+                            .weight(1f)
+                    )
                 }
             }
-
+        }
 
 
     }

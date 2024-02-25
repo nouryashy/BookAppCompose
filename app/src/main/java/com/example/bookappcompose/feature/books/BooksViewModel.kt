@@ -3,7 +3,7 @@ package com.example.bookappcompose.feature.books
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.domain.books.usecase.GetAllBooks
+import com.example.domain.books.usecase.GetBooks
 import com.example.bookappcompose.state.Resource
 import com.example.domain.books.model.Book
 import com.example.domain.books.usecase.GetTopBooks
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BooksViewModel @Inject constructor(
-    private val getAllBooksUseCase: GetAllBooks,
+    private val getBooksUseCase: GetBooks,
     private val getTopBooksUseCase: GetTopBooks
 ) :
     ViewModel() {
@@ -30,13 +30,14 @@ class BooksViewModel @Inject constructor(
 
     init {
         loadAllBooks()
+        loadTopBooks()
     }
 
     fun loadAllBooks() {
         _books.value = Resource.Loading
         viewModelScope.launch {
             try {
-                val bookList = getAllBooksUseCase(currentPage)
+                val bookList = getBooksUseCase(currentPage)
                 Log.d(TAG, "loadBooks: $bookList")
 //                _books.value = Resource.Success(bookList)
                 _books.emit(Resource.Success(bookList))

@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.room.Room
 import com.example.data.books.cache.db.BooksDatabase
 import com.example.bookappcompose.utils.Constants
+import com.example.data.authors.cache.db.AuthorsDao
+import com.example.data.authors.cache.db.AuthorsDatabase
+import com.example.data.authors.remote.AuthorsServices
 import com.example.data.books.cache.db.BooksDao
 import com.example.data.books.remote.service.BooksServices
 import dagger.Module
@@ -42,6 +45,11 @@ object AppModule {
         return retrofit.create(BooksServices::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideAuthorApiService(retrofit: Retrofit): AuthorsServices {
+        return retrofit.create(AuthorsServices::class.java)
+    }
 
     @Provides
     @Singleton
@@ -51,6 +59,13 @@ object AppModule {
             .build()
     }
 
+    @Provides
+    @Singleton
+    fun provideAuthorDatabase(app: Application): AuthorsDatabase {
+        return Room.databaseBuilder(app, AuthorsDatabase::class.java, "authors_database")
+            .allowMainThreadQueries()
+            .build()
+    }
 
     @Provides
     @Singleton
@@ -58,5 +73,10 @@ object AppModule {
         return database.BooksDao()
     }
 
+    @Provides
+    @Singleton
+    fun provideAuthorDao(database: AuthorsDatabase): AuthorsDao {
+        return database.authorDao()
+    }
 
 }

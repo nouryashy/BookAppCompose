@@ -7,16 +7,29 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.bookappcompose.feature.auther.AuthorsScreen
 import com.example.bookappcompose.feature.books.BookDetailsScreen
 import com.example.bookappcompose.feature.books.BooksScreen
+import com.example.bookappcompose.main.composoble.BottomNavigationView
+import com.example.bookappcompose.main.screens.MainScreen
 
-const val BOOK_ROUTE = "books_List"
-const val BOOK_DETAIL_ROUTE = "book_detail"
+const val Main_ROUTE = "main_screen"
+const val BOOK_ROUTE = "books_screen"
+const val BOOK_DETAIL_ROUTE = "book_detail_screen"
+const val AUTHOR_ROUTE = "author_screen"
 
 @Composable
 fun NavigationHost() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = BOOK_ROUTE) {
+    NavHost(navController = navController, startDestination = Main_ROUTE) {
+
+        composable(route = Main_ROUTE) {
+            MainScreen(
+                navController = navController,
+                booksViewModel = hiltViewModel(),
+                authorsViewModel = hiltViewModel()
+            )
+        }
         composable(route = BOOK_ROUTE) {
             BooksScreen(navController = navController, viewModel = hiltViewModel())
         }
@@ -45,6 +58,14 @@ fun NavigationHost() {
                 bookImage = bookImage!!
             )
         }
+
+        composable(route = AUTHOR_ROUTE) {
+            AuthorsScreen(navController = navController, viewModel = hiltViewModel())
+        }
+
+
     }
+
+    BottomNavigationView(navController = navController)
 
 }
