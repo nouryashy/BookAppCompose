@@ -24,7 +24,6 @@ class CartViewModel @Inject constructor(
     private val removeBookFromCartUseCase: RemoveBookFromCart,
     private val updateBookInCart: UpdateBookInCart,
 
-
     ) : ViewModel() {
     private val _cartItems = MutableStateFlow<Resource<List<Cart>>>(Resource.Loading)
     val cartItems: StateFlow<Resource<List<Cart>>> = _cartItems
