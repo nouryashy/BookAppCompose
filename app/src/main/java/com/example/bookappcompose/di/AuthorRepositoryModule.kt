@@ -1,12 +1,12 @@
 package com.example.bookappcompose.di
 
-import com.example.data.authors.cache.db.AuthorsDao
-import com.example.data.authors.cache.mapper.CachedAuthorsMapper
-import com.example.data.authors.data.repository.AuthorsRepositoryImp
-import com.example.data.authors.data.store.AuthorLocalDataSourse
-import com.example.data.authors.data.store.AuthorNetworkDataSource
-import com.example.data.authors.remote.AuthorsServices
-import com.example.data.authors.remote.mapper.AuthorsResponseModelMapper
+import com.example.data.author.cache.db.AuthorsDao
+import com.example.data.author.cache.mapper.CachedAuthorsMapper
+import com.example.data.author.data.repository.AuthorsRepositoryImp
+import com.example.data.author.data.store.AuthorLocalDataSourse
+import com.example.data.author.data.store.AuthorNetworkDataSource
+import com.example.data.author.remote.AuthorsServices
+import com.example.data.author.remote.mapper.AuthorsResponseModelMapper
 import com.example.domain.authors.repository.AuthorRepository
 import dagger.Module
 import dagger.Provides
@@ -42,11 +42,11 @@ object AuthorRepositoryModule {
     @Provides
     fun provideAuthorRepository(
         networkDataSource: AuthorNetworkDataSource,
-        localDataSourse: AuthorLocalDataSourse,
+        localDataSource: AuthorLocalDataSourse,
         mapperRemote: AuthorsResponseModelMapper,
         mapperCached: CachedAuthorsMapper
 
     ): AuthorRepository {
-        return AuthorsRepositoryImp(networkDataSource, localDataSourse, mapperRemote, mapperCached)
+        return AuthorsRepositoryImp(networkDataSource, localDataSource, mapperRemote, mapperCached)
     }
 }

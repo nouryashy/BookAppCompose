@@ -28,7 +28,7 @@ fun SplashScreen( activity: SplashActivity) {
 @Composable
 fun SplashContent( activity: SplashActivity) {
     LaunchedEffect(key1 = true) {
-        delay(2000)
+        delay(1500)
         activity.startActivity(Intent(activity, MainActivity::class.java))
 
     }

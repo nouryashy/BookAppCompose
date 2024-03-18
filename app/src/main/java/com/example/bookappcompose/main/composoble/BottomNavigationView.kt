@@ -51,7 +51,7 @@ fun BottomNavigationView(navController: NavController) {
                         popUpTo(navController.graph.startDestinationRoute!!) {
                             saveState = true
                         }
-                        launchSingleTop = true
+                        launchSingleTop = false
                         restoreState = true
                     }
                 },
@@ -66,25 +66,53 @@ fun BottomNavigationView(navController: NavController) {
                 },
                 label = { Text("Main") }
             )
-
             BottomNavigationItem(
-                selected = currentRoute == "books_screen",
+                selected = currentRoute == "category_Label_screen",
                 onClick = {
-                    navController.navigate("books_screen") {
+                    navController.navigate("category_Label_screen") {
                         popUpTo(navController.graph.startDestinationRoute!!) {
                             saveState = true
+//                            saveState = false
                         }
-                        launchSingleTop = true
+//                        launchSingleTop = true
+                        launchSingleTop = false
                         restoreState = true
+//                        restoreState = false
                     }
                 },
                 icon = {
                     Icon(
                         painter = painterResource(
-                            id = if (currentRoute == "books_screen")
+                            id = if (currentRoute == "category_Label_screen")
+                                R.drawable.ic_category_dark else R.drawable.ic_category_light
+                        ),
+                        contentDescription = "Icon", modifier = Modifier.size(20.dp)
+                    )
+                },
+                label = { Text("Category") }
+            )
+
+            BottomNavigationItem(
+                selected = currentRoute == "book_screen",
+                onClick = {
+                    navController.navigate("book_screen") {
+                        popUpTo(navController.graph.startDestinationRoute!!) {
+//                            saveState = true
+                            saveState = false
+                        }
+//                        launchSingleTop = true
+                        launchSingleTop = false
+//                        restoreState = true
+                        restoreState = false
+                    }
+                },
+                icon = {
+                    Icon(
+                        painter = painterResource(
+                            id = if (currentRoute == "book_screen")
                                 R.drawable.ic_book_dark else R.drawable.ic_book_light
                         ),
-                        contentDescription = "Icon", modifier = Modifier.size(24.dp)
+                        contentDescription = "Icon", modifier = Modifier.size(23.dp)
                     )
                 },
                 label = { Text("Books") }
@@ -95,10 +123,13 @@ fun BottomNavigationView(navController: NavController) {
                 onClick = {
                     navController.navigate("author_screen") {
                         popUpTo(navController.graph.startDestinationRoute!!) {
-                            saveState = true
+                            //                            saveState = true
+                            saveState = false
                         }
-                        launchSingleTop = true
-                        restoreState = true
+//                        launchSingleTop = true
+                        launchSingleTop = false
+//                        restoreState = true
+                        restoreState = false
                     }
                 },
                 icon = {
@@ -107,10 +138,36 @@ fun BottomNavigationView(navController: NavController) {
                             id = if (currentRoute == "author_screen")
                                 R.drawable.ic_author_dark else R.drawable.ic_author_light
                         ),
-                        contentDescription = "Icon", modifier = Modifier.size(24.dp)
+                        contentDescription = "Icon", modifier = Modifier.size(23.dp)
                     )
                 },
                 label = { Text("Authors") }
+            )
+
+            BottomNavigationItem(
+                selected = currentRoute == "cart_screen",
+                onClick = {
+                    navController.navigate("cart_screen") {
+                        popUpTo(navController.graph.startDestinationRoute!!) {
+
+                            saveState = true
+                        }
+                        launchSingleTop = false
+
+
+                        restoreState = true
+                    }
+                },
+                icon = {
+                    Icon(
+                        painter = painterResource(
+                            id = if (currentRoute == "cart_screen")
+                                R.drawable.ic_cart_dark else R.drawable.ic_cart_light
+                        ),
+                        contentDescription = "Icon", modifier = Modifier.size(24.dp)
+                    )
+                },
+                label = { Text("Cart") }
             )
         }
     }

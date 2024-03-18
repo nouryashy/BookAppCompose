@@ -2,13 +2,18 @@ package com.example.bookappcompose.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.data.books.cache.db.BooksDatabase
+import com.example.data.book.cache.db.BooksDatabase
 import com.example.bookappcompose.utils.Constants
-import com.example.data.authors.cache.db.AuthorsDao
-import com.example.data.authors.cache.db.AuthorsDatabase
-import com.example.data.authors.remote.AuthorsServices
-import com.example.data.books.cache.db.BooksDao
-import com.example.data.books.remote.service.BooksServices
+import com.example.data.author.cache.db.AuthorsDao
+import com.example.data.author.cache.db.AuthorsDatabase
+import com.example.data.author.remote.AuthorsServices
+import com.example.data.book.cache.db.BooksDao
+import com.example.data.book.remote.service.BooksServices
+import com.example.data.cart.CartDao
+import com.example.data.cart.CartDataBase
+import com.example.data.category.categoryBooks.cached.db.CategoryBooksDao
+import com.example.data.category.categoryBooks.cached.db.CategoryBooksDataBase
+import com.example.data.category.categoryBooks.remote.services.CategoryBooksServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -53,6 +58,13 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideCategoryBooksApiService(retrofit: Retrofit): CategoryBooksServices {
+        return retrofit.create(CategoryBooksServices::class.java)
+    }
+
+
+    @Provides
+    @Singleton
     fun provideBookDatabase(app: Application): BooksDatabase {
         return Room.databaseBuilder(app, BooksDatabase::class.java, "books_database")
             .allowMainThreadQueries()
@@ -69,6 +81,24 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideCategoryBookDatabase(app: Application): CategoryBooksDataBase {
+        return Room.databaseBuilder(app, CategoryBooksDataBase::class.java, "categories_database")
+            .allowMainThreadQueries()
+            .build()
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideCartDatabase(app: Application): CartDataBase {
+        return Room.databaseBuilder(app, CartDataBase::class.java, "cart_database")
+            .allowMainThreadQueries()
+            .build()
+    }
+
+
+    @Provides
+    @Singleton
     fun provideBookDao(database: BooksDatabase): BooksDao {
         return database.BooksDao()
     }
@@ -78,5 +108,19 @@ object AppModule {
     fun provideAuthorDao(database: AuthorsDatabase): AuthorsDao {
         return database.authorDao()
     }
+
+
+    @Provides
+    @Singleton
+    fun provideCategoryBookDao(database: CategoryBooksDataBase): CategoryBooksDao {
+        return database.categoryBooksDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartDao(database: CartDataBase): CartDao {
+        return database.cartDao()
+    }
+
 
 }
