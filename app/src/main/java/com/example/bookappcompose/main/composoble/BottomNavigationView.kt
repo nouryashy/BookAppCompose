@@ -71,13 +71,13 @@ fun BottomNavigationView(navController: NavController) {
                 onClick = {
                     navController.navigate("category_Label_screen") {
                         popUpTo(navController.graph.startDestinationRoute!!) {
-                            saveState = true
-//                            saveState = false
+//                            saveState = true
+                            saveState = false
                         }
 //                        launchSingleTop = true
                         launchSingleTop = false
-                        restoreState = true
-//                        restoreState = false
+//                        restoreState = true
+                        restoreState = false
                     }
                 },
                 icon = {
@@ -144,31 +144,33 @@ fun BottomNavigationView(navController: NavController) {
                 label = { Text("Authors") }
             )
 
+
             BottomNavigationItem(
-                selected = currentRoute == "cart_screen",
+                selected = currentRoute == "favorite_screen",
                 onClick = {
-                    navController.navigate("cart_screen") {
+                    navController.navigate("favorite_screen") {
                         popUpTo(navController.graph.startDestinationRoute!!) {
 
                             saveState = true
                         }
                         launchSingleTop = false
 
-
-                        restoreState = true
+//
+//                        restoreState = false
                     }
                 },
                 icon = {
                     Icon(
                         painter = painterResource(
-                            id = if (currentRoute == "cart_screen")
-                                R.drawable.ic_cart_dark else R.drawable.ic_cart_light
+                            id = if (currentRoute == "favorite_screen")
+                                R.drawable.ic_heart_dark else R.drawable.ic_heart_light
                         ),
                         contentDescription = "Icon", modifier = Modifier.size(24.dp)
                     )
                 },
-                label = { Text("Cart") }
+                label = { Text("Favorite") }
             )
+
         }
     }
 }

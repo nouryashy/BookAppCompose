@@ -10,6 +10,7 @@ data class CachedBook(
     val formats: CachedFormats,
     val subjects: List<String>,
     val title: String,
+    val isFavorite: Boolean
 
 
 )

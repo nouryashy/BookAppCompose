@@ -5,6 +5,7 @@ data class Book(
     val formats: Formats,
     val subjects: List<String>,
     val title: String,
+    var isFavorite: Boolean
 
     )
 {

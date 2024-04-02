@@ -23,6 +23,16 @@ class BookLocalDataSource(val bookDao: BooksDao) {
     suspend  fun saveTopBooksToDb(books: List<CachedBook>) {
         bookDao.insertTopBooks(books)
     }
+    suspend fun getFavoriteBooks(): List<CachedBook> {
+        return bookDao.getFavoriteBooks()
+    }
+    suspend fun addToFavorites(book: CachedBook) {
+        bookDao.insertToFav(book)
+    }
 
+
+    suspend fun removeFromFavorites(book: CachedBook) {
+        bookDao.updateFavoriteStatus(book.id,false)
+    }
 
 }

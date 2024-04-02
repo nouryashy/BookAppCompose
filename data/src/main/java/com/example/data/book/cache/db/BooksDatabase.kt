@@ -4,7 +4,7 @@ import androidx.room.*
 import com.example.data.book.cache.entity.CachedBook
 
 
-@Database(entities = [CachedBook::class], version = 1,exportSchema = true)
+@Database(entities = [CachedBook::class], version = 2,exportSchema = true)
 @TypeConverters(BookConverters::class)
 
 abstract class BooksDatabase : RoomDatabase() {

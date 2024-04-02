@@ -25,5 +25,15 @@ interface BooksDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertTopBooks(books: List<CachedBook>)
 
+    @Query("SELECT * FROM books WHERE isFavorite = 1")
+    suspend fun getFavoriteBooks(): List<CachedBook>
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertToFav(book: CachedBook)
+
+    @Query("UPDATE books SET isFavorite = :isFavorite WHERE id = :id")
+    suspend fun updateFavoriteStatus(id: Int, isFavorite: Boolean)
+
 }
 

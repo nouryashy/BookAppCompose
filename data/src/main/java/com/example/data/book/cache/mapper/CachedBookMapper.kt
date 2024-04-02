@@ -13,7 +13,8 @@ object CachedBookMapper {
     id = type.id,
     formats = formatModel,
     subjects = type.subjects,
-    title = type.title
+    title = type.title,
+        isFavorite = type.isFavorite
     )
 }
 
@@ -24,6 +25,7 @@ fun mapToCached(entity: CachedBook): BookModel {
         formats = formatCashed,
         subjects = entity.subjects,
         title = entity.title,
+        isFavorite = entity.isFavorite
     )
 }
 }

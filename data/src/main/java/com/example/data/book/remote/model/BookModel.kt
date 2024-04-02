@@ -7,7 +7,7 @@ data class BookModel(
     val formats: FormatsModel,
     val subjects: List<String>,
     val title: String,
-
+    val isFavorite: Boolean
 )
 {
     data class FormatsModel (

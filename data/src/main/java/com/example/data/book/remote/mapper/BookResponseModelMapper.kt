@@ -1,4 +1,5 @@
 package com.example.data.book.remote.mapper
+
 import com.example.data.book.remote.model.BookModel
 import com.example.domain.books.model.Book
 
@@ -10,7 +11,8 @@ object BookResponseModelMapper {
             id = entity.id,
             formats = formatEntity,
             subjects = entity.subjects,
-            title = entity.title
+            title = entity.title,
+            isFavorite = entity.isFavorite
         )
     }
 
@@ -21,6 +23,7 @@ object BookResponseModelMapper {
             formats = formatDomain,
             subjects = domain.subjects,
             title = domain.title,
+            isFavorite = domain.isFavorite
         )
     }
 }

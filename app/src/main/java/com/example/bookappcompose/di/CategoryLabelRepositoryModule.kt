@@ -1,6 +1,5 @@
 package com.example.bookappcompose.di
 
-import com.example.data.cart.repository.CartRepositoryImp
 import com.example.data.category.categorylabel.repository.CategoryLabelRepositoryImp
 import com.example.domain.category.categorylabel.repository.CategoryLabelRepository
 

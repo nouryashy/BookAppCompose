@@ -8,9 +8,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.bookappcompose.feature.author.screen.AuthorsScreen
-import com.example.bookappcompose.feature.book.screen.BookDetailsScreen
-import com.example.bookappcompose.feature.book.screen.BooksScreen
-import com.example.bookappcompose.feature.cart.screen.CartScreen
+import com.example.bookappcompose.feature.book.book.screen.BookDetailsScreen
+import com.example.bookappcompose.feature.book.book.screen.BooksScreen
+import com.example.bookappcompose.feature.book.fav.screens.FavoriteBooksScreen
 import com.example.bookappcompose.feature.category.categorybook.screen.CategoryBookScreen
 import com.example.bookappcompose.feature.category.categorylabel.screen.CategoryLabelScreen
 import com.example.bookappcompose.main.composoble.BottomNavigationView
@@ -22,7 +22,7 @@ const val BOOK_DETAIL_ROUTE = "book_detail_screen"
 const val AUTHOR_ROUTE = "author_screen"
 const val CATEGORY_LABEL_ROUTE = "category_Label_screen"
 const val CATEGORY_BOOK_ROUTE = "category_book_screen"
-const val CART_ROUTE = "cart_screen"
+const val FAVORITE_BOOK_ROUTE = "favorite_screen"
 
 @Composable
 fun NavigationHost() {
@@ -34,7 +34,7 @@ fun NavigationHost() {
                 navController = navController,
                 booksViewModel = hiltViewModel(),
                 authorsViewModel = hiltViewModel(),
-                cartViewModel = hiltViewModel()
+                favoriteBookViewModel = hiltViewModel()
             )
         }
         composable(route = BOOK_ROUTE) {
@@ -97,10 +97,9 @@ fun NavigationHost() {
             )
         }
 
-        composable(route = CART_ROUTE) {
-            CartScreen(navController = navController, viewModel = hiltViewModel())
+        composable(route = FAVORITE_BOOK_ROUTE) {
+            FavoriteBooksScreen(navController = navController, viewModel = hiltViewModel())
         }
-
 
     }
 

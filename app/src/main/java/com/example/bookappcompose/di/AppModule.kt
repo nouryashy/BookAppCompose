@@ -9,8 +9,6 @@ import com.example.data.author.cache.db.AuthorsDatabase
 import com.example.data.author.remote.AuthorsServices
 import com.example.data.book.cache.db.BooksDao
 import com.example.data.book.remote.service.BooksServices
-import com.example.data.cart.CartDao
-import com.example.data.cart.CartDataBase
 import com.example.data.category.categoryBooks.cached.db.CategoryBooksDao
 import com.example.data.category.categoryBooks.cached.db.CategoryBooksDataBase
 import com.example.data.category.categoryBooks.remote.services.CategoryBooksServices
@@ -88,13 +86,6 @@ object AppModule {
     }
 
 
-    @Provides
-    @Singleton
-    fun provideCartDatabase(app: Application): CartDataBase {
-        return Room.databaseBuilder(app, CartDataBase::class.java, "cart_database")
-            .allowMainThreadQueries()
-            .build()
-    }
 
 
     @Provides
@@ -116,11 +107,6 @@ object AppModule {
         return database.categoryBooksDao()
     }
 
-    @Provides
-    @Singleton
-    fun provideCartDao(database: CartDataBase): CartDao {
-        return database.cartDao()
-    }
 
 
 }
