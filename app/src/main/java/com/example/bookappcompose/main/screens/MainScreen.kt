@@ -58,6 +58,8 @@ fun MainScreen(
     val topBooks by booksViewModel.topBooks.collectAsState()
     val topAuthors by authorsViewModel.authors.collectAsState()
 
+    val favoriteBooks by favoriteBookViewModel.favoriteBooks.collectAsState()
+
     Column(modifier = Modifier.fillMaxSize()) {
         SearchBarView(
             searchText = searchTextState,
@@ -82,7 +84,8 @@ fun MainScreen(
             searchText = searchTextState, navController = navController,
             onFavoriteClick = { book ->
                 favoriteBookViewModel.toggleFavStatus(book)
-            }
+            },
+            favoriteBooks = favoriteBooks
         )
         TopAuthorsContent(topAuthorsResource = topAuthors, navController = navController)
     }
@@ -95,9 +98,10 @@ fun TopBookContent(
     navController: NavController,
     onItemClick: (Book) -> Unit,
     onFavoriteClick: (Book) -> Unit,
+    favoriteBooks: List<Book>
 ) {
-    val viewModel: FavoriteBookViewModel = hiltViewModel()
-    val favItems by viewModel.favoriteBooks.collectAsState()
+//    val viewModel: FavoriteBookViewModel = hiltViewModel()
+//    val favItems by viewModel.favoriteBooks.collectAsState()
     Column(
         modifier = Modifier.fillMaxWidth(),
     ) {
@@ -137,15 +141,16 @@ fun TopBookContent(
                     if (searchText.isBlank()) topBooksResource.data else filteredTopBooks
                 LazyRow(contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),) {
                     items(topBooks) { book ->
-                        val favBooks = favItems
-                        val isFav=favBooks.any{book.isFavorite== it.isFavorite}
+//                        val favBooks = favItems
+//                        val isFavorite=favBooks.any{book.isFavorite== it.isFavorite}
+                        val isFavorite = favoriteBooks.any { it.id == book.id }
                         MiniBookItem(
                             book = book,
                             modifier = Modifier.clickable {
                                 onItemClick(book)
                             },
                             onFavoriteClick = { onFavoriteClick(book) },
-                            isFavorite = isFav
+                            isFavorite = isFavorite
                         )
                     }
                 }

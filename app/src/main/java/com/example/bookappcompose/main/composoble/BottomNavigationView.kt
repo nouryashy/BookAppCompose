@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.fastCbrt
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.bookappcompose.R
@@ -49,7 +50,7 @@ fun BottomNavigationView(navController: NavController) {
                 onClick = {
                     navController.navigate("main_screen") {
                         popUpTo(navController.graph.startDestinationRoute!!) {
-                            saveState = true
+                            saveState = false
                         }
                         launchSingleTop = false
                         restoreState = true
@@ -74,9 +75,7 @@ fun BottomNavigationView(navController: NavController) {
 //                            saveState = true
                             saveState = false
                         }
-//                        launchSingleTop = true
                         launchSingleTop = false
-//                        restoreState = true
                         restoreState = false
                     }
                 },
@@ -97,12 +96,10 @@ fun BottomNavigationView(navController: NavController) {
                 onClick = {
                     navController.navigate("book_screen") {
                         popUpTo(navController.graph.startDestinationRoute!!) {
-//                            saveState = true
+
                             saveState = false
                         }
-//                        launchSingleTop = true
                         launchSingleTop = false
-//                        restoreState = true
                         restoreState = false
                     }
                 },
@@ -126,9 +123,7 @@ fun BottomNavigationView(navController: NavController) {
                             //                            saveState = true
                             saveState = false
                         }
-//                        launchSingleTop = true
                         launchSingleTop = false
-//                        restoreState = true
                         restoreState = false
                     }
                 },
@@ -154,9 +149,6 @@ fun BottomNavigationView(navController: NavController) {
                             saveState = true
                         }
                         launchSingleTop = false
-
-//
-//                        restoreState = false
                     }
                 },
                 icon = {

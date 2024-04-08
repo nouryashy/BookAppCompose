@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -99,14 +100,20 @@ fun MiniBookItem(
                 )
 
                 {
+//                    Icon(
+//                        painter = if (isFavorite)
+//                            rememberAsyncImagePainter(model = R.drawable.ic_heart_dark)
+//                        else rememberAsyncImagePainter(model = R.drawable.ic_heart_light),
+//                        contentDescription = "Favorite",
+//                        tint = if (isFavorite) Color.Red else Color.Gray
+//
+//
+//                    )
+
                     Icon(
-                        painter = if (isFavorite)
-                            rememberAsyncImagePainter(model = R.drawable.ic_heart_dark)
-                        else rememberAsyncImagePainter(model = R.drawable.ic_heart_light),
+                        painter = rememberVectorPainter(if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder),
                         contentDescription = "Favorite",
                         tint = if (isFavorite) Color.Red else Color.Gray
-
-
                     )
                 }
             }
