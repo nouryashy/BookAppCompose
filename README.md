@@ -50,13 +50,18 @@ Navigation Compose
 ▶️ Getting Started
 1.Clone the repository:
 git clone https://github.com/nouryashy/BookAppCompose.git
+
 2.Open in Android Studio (Hedgehog or later)
+
 3.Run on emulator or physical device
 
 💡 Future Improvements
 * Add dark mode support
+  
 * Implement paging
+  
 * UI tests with Compose Test APIs
+  
 * Lottie animations for empty states
 
 🤝 Contribution
@@ -67,4 +72,5 @@ MIT License © Nourhan Ashmawy
 
 🔗 Connect with Me
 * LinkedIn :https://www.linkedin.com/in/nourhan-ashmawy/
+
 * GitHub :https://github.com/nouryashy
